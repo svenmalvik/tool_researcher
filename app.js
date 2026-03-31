@@ -1,6 +1,7 @@
 let content = null;
 let themeToggle = null;
 let currentMarkdownPath = null;
+let mermaidModulePromise = null;
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", init, { once: true });
@@ -25,7 +26,7 @@ async function loadMarkdown() {
   }
 
   if (window.location.protocol === "file:") {
-    renderContent(getFallbackMarkdown(), {
+    await renderContent(getFallbackMarkdown(), {
       kind: "info",
       message:
         "Opened from disk. Browsers block reading sibling Markdown files over file://, so this page is showing the built-in starter content.",
@@ -42,7 +43,7 @@ async function loadMarkdown() {
 
     currentMarkdownPath = result.path;
     document.title = getDocumentTitle(result.path);
-    renderContent(result.markdown);
+    await renderContent(result.markdown);
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error";
 
@@ -59,7 +60,7 @@ async function loadMarkdown() {
     if (getFallbackMarkdown()) {
       currentMarkdownPath = "index.md";
       document.title = getDocumentTitle(currentMarkdownPath);
-      renderContent(getFallbackMarkdown(), {
+      await renderContent(getFallbackMarkdown(), {
         kind: "warning",
         message: `Could not load index.md directly. Showing the built-in starter content instead. (${message})`,
       });
@@ -113,7 +114,7 @@ async function fetchPreferredMarkdown(paths) {
   throw lastError ?? new Error("Failed to load markdown content");
 }
 
-function renderContent(markdown, notice = null) {
+async function renderContent(markdown, notice = null) {
   if (!content) {
     return;
   }
@@ -127,6 +128,12 @@ function renderContent(markdown, notice = null) {
     : "";
 
   content.innerHTML = `${noticeMarkup}${renderMarkdown(markdown)}`;
+
+  try {
+    await renderMermaidDiagrams(content);
+  } catch (error) {
+    console.error("Failed to render Mermaid diagrams.", error);
+  }
 }
 
 function renderMarkdown(markdown) {
@@ -175,9 +182,19 @@ function renderMarkdown(markdown) {
       return;
     }
 
-    blocks.push(
-      `<pre><code>${escapeHtml(codeFence.join("\n"))}</code></pre>`,
-    );
+    const source = codeFence.lines.join("\n");
+
+    if (codeFence.language === "mermaid") {
+      blocks.push(renderMermaidBlock(source));
+    } else {
+      const languageClass = codeFence.language
+        ? ` class="language-${escapeAttribute(codeFence.language)}"`
+        : "";
+      blocks.push(
+        `<pre><code${languageClass}>${escapeHtml(source)}</code></pre>`,
+      );
+    }
+
     codeFence = null;
   }
 
@@ -190,7 +207,10 @@ function renderMarkdown(markdown) {
       flushOrderedList();
 
       if (codeFence === null) {
-        codeFence = [];
+        codeFence = {
+          language: getFenceLanguage(line),
+          lines: [],
+        };
       } else {
         flushCodeFence();
       }
@@ -199,7 +219,7 @@ function renderMarkdown(markdown) {
     }
 
     if (codeFence !== null) {
-      codeFence.push(line);
+      codeFence.lines.push(line);
       continue;
     }
 
@@ -269,6 +289,23 @@ function renderMarkdown(markdown) {
   return blocks.join("\n");
 }
 
+function getFenceLanguage(line) {
+  return line
+    .trim()
+    .slice(3)
+    .trim()
+    .split(/\s+/, 1)[0]
+    ?.toLowerCase() ?? "";
+}
+
+function renderMermaidBlock(source) {
+  return `
+    <div class="mermaid-shell">
+      <pre class="mermaid-diagram" data-mermaid-source="${escapeAttribute(encodeURIComponent(source))}">${escapeHtml(source)}</pre>
+    </div>
+  `;
+}
+
 function renderTable(tableLines) {
   const [headerLine, , ...rowLines] = tableLines;
   const headers = splitTableRow(headerLine);
@@ -305,11 +342,12 @@ function splitTableRow(line) {
     .map((cell) => cell.trim());
 }
 
-function toggleTheme() {
+async function toggleTheme() {
   const nextTheme =
     document.documentElement.dataset.theme === "dark" ? "light" : "dark";
   applyTheme(nextTheme);
   persistTheme(nextTheme);
+  await renderMermaidDiagrams(content);
 }
 
 function applyTheme(theme) {
@@ -350,6 +388,56 @@ function getSystemTheme() {
 
 function getFallbackMarkdown() {
   return document.querySelector("#default-markdown")?.textContent?.trim() ?? "";
+}
+
+async function renderMermaidDiagrams(root) {
+  if (!root) {
+    return;
+  }
+
+  const nodes = Array.from(root.querySelectorAll(".mermaid-diagram"));
+
+  if (nodes.length === 0) {
+    return;
+  }
+
+  const mermaid = await loadMermaidModule();
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: getMermaidTheme(),
+  });
+
+  for (const node of nodes) {
+    node.removeAttribute("data-processed");
+    node.textContent = decodeMermaidSource(node.dataset.mermaidSource);
+  }
+
+  await mermaid.run({ nodes });
+}
+
+async function loadMermaidModule() {
+  if (!mermaidModulePromise) {
+    mermaidModulePromise = import("./node_modules/mermaid/dist/mermaid.esm.min.mjs")
+      .then((module) => module.default ?? module)
+      .catch((error) => {
+        mermaidModulePromise = null;
+        throw error;
+      });
+  }
+
+  return mermaidModulePromise;
+}
+
+function getMermaidTheme() {
+  return document.documentElement.dataset.theme === "dark" ? "dark" : "default";
+}
+
+function decodeMermaidSource(source = "") {
+  try {
+    return decodeURIComponent(source);
+  } catch {
+    return source;
+  }
 }
 
 function renderInline(text) {
