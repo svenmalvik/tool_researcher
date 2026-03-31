@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tool Research Baseline"
+  short_description: "Study current tools before comparison"
+  default_prompt: "Use $tool-research-baseline to research the tools already in use and build the baseline the candidate tool must be compared against."
