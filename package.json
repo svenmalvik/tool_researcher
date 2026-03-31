@@ -1,0 +1,10 @@
+{
+  "name": "tool-researcher-web",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Minimal static site for the Tool Researcher template",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  }
+}
