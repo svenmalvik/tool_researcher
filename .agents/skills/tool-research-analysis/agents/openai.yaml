@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tool Research Analysis"
+  short_description: "Evaluate the tool and market landscape"
+  default_prompt: "Use $tool-research-analysis to research the candidate tool, compare it to the current baseline and market alternatives, and surface the real tradeoffs."

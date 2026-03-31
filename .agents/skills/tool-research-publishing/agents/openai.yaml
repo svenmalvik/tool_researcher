@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tool Research Publishing"
+  short_description: "Assemble a linked Markdown package"
+  default_prompt: "Use $tool-research-publishing to turn the research into a linked Markdown package with a main index, one-pager, section files, tables, and Mermaid diagrams."

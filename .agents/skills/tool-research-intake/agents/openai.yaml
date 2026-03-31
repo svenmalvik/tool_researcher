@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tool Research Intake"
+  short_description: "Scope tool research with key questions"
+  default_prompt: "Use $tool-research-intake to gather the clarifying questions needed before researching whether a tool is worth investing in."
