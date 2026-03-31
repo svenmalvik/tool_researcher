@@ -261,6 +261,28 @@ body::before {
   color: var(--code-text);
 }
 
+.mermaid-shell {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.content-card pre.mermaid-diagram {
+  min-width: fit-content;
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid var(--surface-border);
+  border-radius: 18px;
+  background: var(--table-surface);
+  color: var(--text);
+}
+
+.content-card pre.mermaid-diagram svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
 .table-wrap {
   overflow-x: auto;
   margin: 1.5rem 0;
