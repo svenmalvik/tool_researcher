@@ -9,6 +9,9 @@ The work should not stop at feature discovery. The goal is to produce a defensib
 ## Operating Model
 
 - Start with clarifying questions before doing broad research.
+- Before the main intake, do a lightweight orientation pass on the candidate tool to identify its category, likely use case, deployment model, and obvious evaluation-specific questions.
+- Keep that orientation pass narrow. It is only for tailoring intake questions, not for reaching conclusions or skipping user context.
+- Ask no more than five intake prompts at a time and prefer grouped prompts over long flat questionnaires.
 - Create a task list at the start of the run and keep it updated as work is completed.
 - Always ask what similar or adjacent tools are already in use today.
 - Research the current tools first so the evaluation has a real baseline.
@@ -22,13 +25,14 @@ The work should not stop at feature discovery. The goal is to produce a defensib
 
 Follow this order unless the user explicitly asks for a different flow:
 
-1. Intake and clarifying questions
-2. Create and maintain the task list
-3. Baseline research on current tools already in use
-4. Deep profile of the candidate tool
-5. Deep profile of each relevant competitor or incumbent tool
-6. Cross-tool comparison and synthesis
-7. Final publishing into the linked Markdown package
+1. Lightweight orientation on the candidate tool and category
+2. Intake and clarifying questions
+3. Create and maintain the task list
+4. Baseline research on current tools already in use
+5. Deep profile of the candidate tool
+6. Deep profile of each relevant competitor or incumbent tool
+7. Cross-tool comparison and synthesis
+8. Final publishing into the linked Markdown package
 
 ## Task Tracking
 
@@ -44,17 +48,23 @@ The task list must:
 
 ## Required Intake
 
-Before research begins, gather at least the following:
+Use the orientation pass to tailor the intake, then gather at least the following from the user before broader research begins:
 
 - The tool being evaluated
 - The business problem or job to be done
+- Why the evaluation is happening now
+- The decision to be made, the timeline, and the desired level of confidence
 - The primary users and stakeholders
+- The decision owner or approver
 - The expected number of users or seats
 - The types of users, such as PMs, developers, designers, operators, or executives
+- The success criteria or expected outcomes
 - Similar tools already in use
 - What is working well with the current tools
 - What is missing or painful with the current tools
 - Must-have capabilities and non-negotiable constraints
+- Budget, pricing sensitivity, and procurement constraints when relevant
+- Contract, migration, or switching-cost barriers tied to the current tools
 - Decision criteria, timeline, and desired level of confidence
 - Any additional information, documents, notes, links, or prior analysis the user already has
 
@@ -63,6 +73,8 @@ If the user does not know which similar tools are already in use, ask for the cl
 Always ask whether the user has extra context that should be considered before research starts, such as internal notes, known concerns, existing comparisons, vendor material, procurement context, or technical constraints.
 
 Always ask enough about user count and user roles to make pricing analysis realistic. If exact numbers are unknown, capture a reasonable estimate or range and mark it as an assumption.
+
+When the tool category suggests additional risks or decision factors, ask a small number of targeted follow-up questions. Examples include data residency for infrastructure tools, code quality and handoff for design-to-code tools, or governance and model control for AI tools.
 
 ## Agent Roles
 
@@ -97,16 +109,21 @@ Write the final output as a multi-file Markdown package under `research/`.
 
 The package must include:
 
+- `index.md`: the website landing page for the finished research package
 - `research/00-task-list.md`: the live checklist for the run
+- `README.md`: the final one-pager and repository landing page
 - `research/index.md`: the canonical entry point and reading guide
-- `research/one-pager.md`: the concise summary for fast review
 - Numbered section files for the detailed analysis
 - Tool profile pages for the candidate tool, incumbent tools, and key competitors
 
 The output rules are strict:
 
+- Overwrite the template `index.md` at the very end of the project after all research files exist. This is the final publishing task so the website entry page points to the finished research.
+- Overwrite the template `README.md` at the end of the project with the final one-pager so the repository landing page reflects the actual research outcome.
+- `index.md` must link clearly to `README.md` and `research/index.md` so the user can reach both the one-pager and the full package from the website entry page.
 - `research/index.md` must link to every secondary Markdown file.
 - Every secondary Markdown file must link back to `research/index.md`.
+- `README.md` must link into `research/index.md` so the reader can move from summary to full analysis.
 - The main file must explain the reading order so the result feels like a book or website.
 - The task list must show checked and unchecked items so progress is visible.
 - Every tool profile page must be linked from both `research/index.md` and the competitive-landscape section.
@@ -117,9 +134,10 @@ The output rules are strict:
 
 Use this structure unless the project needs a better one:
 
+- `index.md` for the website landing page
+- `README.md` for the final one-pager
 - `research/00-task-list.md`
 - `research/index.md`
-- `research/one-pager.md`
 - `research/01-context-and-goals.md`
 - `research/02-current-state-baseline.md`
 - `research/03-candidate-tool-profile.md`

@@ -11,4 +11,6 @@ This repository is a starting point for evaluating whether a tool is worth adopt
 
 ## What to do next
 
-Replace this file with your own overview, or start a conversation with the AI and let it build the research package under `research/`.
+Start a conversation with the AI and let it build the research package under `research/`.
+
+When the research is complete, this file should be overwritten last with the final website landing page that links to `README.md` and `research/index.md`.

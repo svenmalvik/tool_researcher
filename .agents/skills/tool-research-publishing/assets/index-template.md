@@ -1,10 +1,10 @@
 # {Tool Name} Research Index
 
-This document is the main entry point for the research package. Read it first.
+This document is the main entry point for the full research package.
 
 ## Reading Guide
 
-1. Start with [One-Pager](./one-pager.md) for the short verdict.
+1. Start with the top-level [README](../README.md) for the short verdict.
 2. Review [Task List](./00-task-list.md) to see what is complete and what remains.
 3. Read the numbered sections below for the full analysis.
 4. Review the tool profile pages for deep dives on each tool.
@@ -14,6 +14,7 @@ This document is the main entry point for the research package. Read it first.
 
 | File | Purpose |
 | --- | --- |
+| [../README.md](../README.md) | Executive one-pager and repository landing page |
 | [00-task-list.md](./00-task-list.md) | Live checklist showing completed and remaining work |
 | [01-context-and-goals.md](./01-context-and-goals.md) | Scope, users, goals, and decision criteria |
 | [02-current-state-baseline.md](./02-current-state-baseline.md) | Current tools in use and the baseline to beat |
@@ -35,7 +36,7 @@ This document is the main entry point for the research package. Read it first.
 
 ```mermaid
 flowchart TD
-    A[index.md] --> B[one-pager.md]
+    A[index.md] --> B[README.md]
     A --> B1[00-task-list.md]
     A --> C[01-context-and-goals.md]
     A --> D[02-current-state-baseline.md]

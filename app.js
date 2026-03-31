@@ -32,13 +32,10 @@ async function loadMarkdown() {
   }
 
   try {
-    const response = await fetch("./index.md", { cache: "no-store" });
-
-    if (!response.ok) {
-      throw new Error(`Failed to load index.md (${response.status})`);
-    }
-
-    const markdown = await response.text();
+    const { markdown } = await fetchPreferredMarkdown([
+      "./research/index.md",
+      "./index.md",
+    ]);
     renderContent(markdown);
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error";
@@ -58,6 +55,29 @@ async function loadMarkdown() {
       </div>
     `;
   }
+}
+
+async function fetchPreferredMarkdown(paths) {
+  let lastError = null;
+
+  for (const path of paths) {
+    try {
+      const response = await fetch(path, { cache: "no-store" });
+
+      if (!response.ok) {
+        throw new Error(`Failed to load ${path} (${response.status})`);
+      }
+
+      return {
+        markdown: await response.text(),
+        path,
+      };
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  throw lastError ?? new Error("Failed to load markdown content");
 }
 
 function renderContent(markdown, notice = null) {
