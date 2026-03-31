@@ -1,6 +1,6 @@
-# {Tool Name} One-Pager
+# {Tool Name} Research Summary
 
-[Back to Index](./index.md)
+[Full Research Index](./research/index.md)
 
 ## Recommendation
 

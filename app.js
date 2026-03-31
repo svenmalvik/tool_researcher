@@ -1,5 +1,6 @@
 let content = null;
 let themeToggle = null;
+let currentMarkdownPath = null;
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", init, { once: true });
@@ -14,6 +15,7 @@ function init() {
   const preferredTheme = getStoredTheme() ?? getSystemTheme();
   applyTheme(preferredTheme);
   themeToggle?.addEventListener("click", toggleTheme);
+  window.addEventListener("hashchange", loadMarkdown);
   loadMarkdown();
 }
 
@@ -31,19 +33,32 @@ async function loadMarkdown() {
     return;
   }
 
+  const requestedPath = getRequestedMarkdownPath();
+
   try {
-    const response = await fetch("./index.md", { cache: "no-store" });
+    const result = requestedPath
+      ? await fetchMarkdown(requestedPath)
+      : await fetchPreferredMarkdown(["research/index.md", "index.md"]);
 
-    if (!response.ok) {
-      throw new Error(`Failed to load index.md (${response.status})`);
-    }
-
-    const markdown = await response.text();
-    renderContent(markdown);
+    currentMarkdownPath = result.path;
+    document.title = getDocumentTitle(result.path);
+    renderContent(result.markdown);
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error";
 
+    if (requestedPath) {
+      content.innerHTML = `
+        <div class="error-state">
+          <h2>Could not render ${escapeHtml(requestedPath)}</h2>
+          <p>${escapeHtml(message)}</p>
+        </div>
+      `;
+      return;
+    }
+
     if (getFallbackMarkdown()) {
+      currentMarkdownPath = "index.md";
+      document.title = getDocumentTitle(currentMarkdownPath);
       renderContent(getFallbackMarkdown(), {
         kind: "warning",
         message: `Could not load index.md directly. Showing the built-in starter content instead. (${message})`,
@@ -58,6 +73,44 @@ async function loadMarkdown() {
       </div>
     `;
   }
+}
+
+function getRequestedMarkdownPath() {
+  const params = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+  const requestedPath = params.get("doc");
+
+  if (!requestedPath) {
+    return null;
+  }
+
+  return resolveMarkdownPath("index.md", requestedPath);
+}
+
+async function fetchMarkdown(path) {
+  const response = await fetch(path, { cache: "no-store" });
+
+  if (!response.ok) {
+    throw new Error(`Failed to load ${path} (${response.status})`);
+  }
+
+  return {
+    markdown: await response.text(),
+    path,
+  };
+}
+
+async function fetchPreferredMarkdown(paths) {
+  let lastError = null;
+
+  for (const path of paths) {
+    try {
+      return await fetchMarkdown(path);
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  throw lastError ?? new Error("Failed to load markdown content");
 }
 
 function renderContent(markdown, notice = null) {
@@ -308,13 +361,50 @@ function renderInline(text) {
   );
   rendered = rendered.replace(
     /\[([^\]]+)\]\(([^)]+)\)/g,
-    (_, label, href) =>
-      `<a href="${escapeAttribute(href)}">${escapeHtml(label)}</a>`,
+    (_, label, href) => renderLink(label, href),
   );
   rendered = rendered.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
   rendered = rendered.replace(/\*([^*]+)\*/g, "<em>$1</em>");
 
   return rendered;
+}
+
+function renderLink(label, href) {
+  const markdownPath = resolveMarkdownPath(currentMarkdownPath ?? "index.md", href);
+  const target = markdownPath ? buildMarkdownRoute(markdownPath) : href;
+
+  return `<a href="${escapeAttribute(target)}">${escapeHtml(label)}</a>`;
+}
+
+function buildMarkdownRoute(path) {
+  const params = new URLSearchParams({ doc: path });
+  return `#${params.toString()}`;
+}
+
+function resolveMarkdownPath(basePath, href) {
+  if (!href || href.startsWith("#")) {
+    return null;
+  }
+
+  const appRoot = new URL("./", window.location.href);
+  const baseDocument = new URL(basePath, appRoot);
+  const resolved = new URL(href, baseDocument);
+
+  if (resolved.origin !== appRoot.origin || !resolved.pathname.endsWith(".md")) {
+    return null;
+  }
+
+  const appRootPath = appRoot.pathname;
+  const relativePath = resolved.pathname.startsWith(appRootPath)
+    ? resolved.pathname.slice(appRootPath.length)
+    : resolved.pathname.replace(/^\//, "");
+
+  return decodeURIComponent(relativePath);
+}
+
+function getDocumentTitle(path) {
+  const label = path === "index.md" ? "Tool Researcher" : path;
+  return `${label} | Tool Researcher`;
 }
 
 function escapeHtml(value) {

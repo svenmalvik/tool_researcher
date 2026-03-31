@@ -26,7 +26,9 @@ Then open `http://127.0.0.1:3000`.
 
 The template uses an AI-guided workflow to:
 
+- Do a quick orientation pass on the candidate tool so the intake can adapt to the tool category
 - Ask clarifying questions before research starts
+- Ask those intake questions in small grouped batches rather than a long flat list
 - Ask what similar tools are already in use
 - Research the current tools first to establish a baseline
 - Research the candidate tool and the most relevant competitors
@@ -38,15 +40,20 @@ The template uses an AI-guided workflow to:
 
 To make the research useful, the AI will typically ask for:
 
+- A few category-specific questions informed by a quick first look at the tool
 - The tool being evaluated
 - The business problem to solve
+- Why the evaluation is happening now
+- The decision to be made, the timeline, and the approval owner
 - Users and stakeholders
 - Expected number of users or seats
 - User roles such as PMs, developers, designers, or operators
+- Success criteria or desired outcomes
 - Similar tools already in use
 - Pain points with the current workflow
 - Must-have requirements and constraints
 - Budget or pricing sensitivity
+- Migration, procurement, or switching-cost constraints
 - Any extra notes, links, documents, or prior analysis the user already has
 
 ## What The AI Researches
@@ -65,11 +72,14 @@ The resulting analysis is expected to cover:
 
 The final result is meant to read like a small website or book rather than a loose set of notes. The output can include multiple Markdown files, Mermaid diagrams, and tables, with a main entry page that links to the rest of the research.
 
+When the research is finished, this template `README.md` should be replaced with the final one-pager so the repository landing page reflects the actual recommendation instead of the starter template.
+
 A typical output package includes:
 
+- `index.md` for the website landing page
+- `README.md` for the final one-pager
 - `research/00-task-list.md`
 - `research/index.md`
-- `research/one-pager.md`
 - `research/01-context-and-goals.md`
 - `research/02-current-state-baseline.md`
 - `research/03-candidate-tool-profile.md`
@@ -80,6 +90,7 @@ A typical output package includes:
 - `research/tool-profiles/` for one deep page per tool in scope
 
 The main `research/index.md` file should guide the reader through the rest of the package in order.
+The top-level `index.md` should be regenerated last so the website entry page points to the finished one-pager and the full research package.
 
 ## In Practice
 
