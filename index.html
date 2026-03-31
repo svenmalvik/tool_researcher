@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tool Researcher</title>
+    <script>
+      try {
+        const storedTheme = localStorage.getItem("theme");
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+        document.documentElement.dataset.theme = storedTheme || systemTheme;
+      } catch {
+        document.documentElement.dataset.theme = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches
+          ? "dark"
+          : "light";
+      }
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-top">
+          <p class="eyebrow">Template</p>
+          <button id="theme-toggle" class="theme-toggle" type="button">
+            Dark mode
+          </button>
+        </div>
+        <h1>Tool Researcher</h1>
+        <p class="lede">
+          A minimal starting page that renders the repository&rsquo;s
+          <code>index.md</code>.
+        </p>
+      </header>
+
+      <main>
+        <article id="content" class="content-card" aria-live="polite">
+          <p class="status">Loading <code>index.md</code>&hellip;</p>
+        </article>
+      </main>
+    </div>
+
+    <template id="default-markdown">
+# Tool Researcher
+
+This repository is a starting point for evaluating whether a tool is worth adopting.
+
+## What this template is for
+
+- Defining the problem the tool is supposed to solve
+- Establishing a baseline from the tools already in use
+- Comparing the candidate against relevant competitors
+- Producing a clear recommendation with tradeoffs and next steps
+
+## What to do next
+
+Replace this file with your own overview, or start a conversation with the AI and let it build the research package under `research/`.
+    </template>
+  </body>
+</html>

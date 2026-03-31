@@ -4,6 +4,16 @@ Tool Researcher is a GitHub template for evaluating whether a tool is worth inve
 
 When you create a repository from this template, the repository becomes a workspace for researching one tool in depth. The AI guides the user through clarifying questions, gathers the right context, researches the tool and its competitors, and produces a final recommendation in a format that is easy to review and share.
 
+## Run The Website
+
+This template includes a small Node.js static server so the website can load `index.md` over HTTP instead of relying on `file://`.
+
+```bash
+npm start
+```
+
+Then open `http://127.0.0.1:3000`.
+
 ## What This Template Is For
 
 - Understanding what a tool does and who it is best suited for
