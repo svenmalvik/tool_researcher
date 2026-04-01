@@ -11,7 +11,7 @@ The work should not stop at feature discovery. The goal is to produce a defensib
 - Start with clarifying questions before doing broad research.
 - Before the main intake, do a lightweight orientation pass on the candidate tool to identify its category, likely use case, deployment model, and obvious evaluation-specific questions.
 - Keep that orientation pass narrow. It is only for tailoring intake questions, not for reaching conclusions or skipping user context.
-- Ask intake questions one at a time. Organize them into short rounds of related questions, and after each round provide a concise summary before starting the next round.
+- Ask intake questions one at a time, but keep the intake short: plan a bulk of 3 to 4 broad questions, ask them across separate turns, and wait until the end of that bulk to summarize, reason, or recommend.
 - Create a task list at the start of the run and keep it updated as work is completed.
 - Always ask what similar or adjacent tools are already in use today.
 - Research the current tools first so the evaluation has a real baseline.
@@ -43,7 +43,7 @@ The task list must:
 - Use Markdown checkboxes
 - Show what is completed and what is still remaining
 - Be updated whenever a major task is finished
-- Be refined when new competitor, baseline, pricing, or publishing tasks are discovered
+- Be refined when new competitor, baseline, synthesis, or publishing tasks are discovered
 - Stay aligned with the actual workflow so both the user and the AI can see progress clearly
 
 ## Required Intake
@@ -56,23 +56,23 @@ Use the orientation pass to tailor the intake, then gather at least the followin
 - The decision to be made, the timeline, and the desired level of confidence
 - The primary users and stakeholders
 - The decision owner or approver
-- The expected number of users or seats
 - The types of users, such as PMs, developers, designers, operators, or executives
 - The success criteria or expected outcomes
 - Similar tools already in use
 - What is working well with the current tools
 - What is missing or painful with the current tools
 - Must-have capabilities and non-negotiable constraints
-- Budget, pricing sensitivity, and procurement constraints when relevant
 - Contract, migration, or switching-cost barriers tied to the current tools
-- Decision criteria, timeline, and desired level of confidence
+- Decision criteria or major tradeoffs that matter most
 - Any additional information, documents, notes, links, or prior analysis the user already has
 
 If the user does not know which similar tools are already in use, ask for the closest known substitutes or the current workflow that the candidate tool would replace.
 
 Always ask whether the user has extra context that should be considered before research starts, such as internal notes, known concerns, existing comparisons, vendor material, procurement context, or technical constraints.
 
-Always ask enough about user count and user roles to make pricing analysis realistic. If exact numbers are unknown, capture a reasonable estimate or range and mark it as an assumption.
+During intake, do not ask about user counts, seat estimates, budget ranges, or pricing ceilings. If the user volunteers commercial context or later asks for pricing analysis, use that context without reopening intake.
+
+During a short intake sequence, ask the next question directly after the user answers the previous one. Do not summarize, interpret, or start recommending until that planned question bulk is complete.
 
 When the tool category suggests additional risks or decision factors, ask a small number of targeted follow-up questions. Examples include data residency for infrastructure tools, code quality and handoff for design-to-code tools, or governance and model control for AI tools.
 
@@ -97,8 +97,7 @@ Every serious evaluation should cover the lenses below. Skip a lens only when it
 - Enterprise readiness, such as SSO, SCIM, admin controls, and enterprise licensing
 - Competitive landscape and differentiation
 - Implementation and integration effort
-- Pricing, licensing, and total cost of ownership
-- Pricing fit for the expected number and type of users
+- Commercial model, pricing, and total cost of ownership when they materially affect the decision
 - Security, compliance, and operational concerns when relevant
 - Vendor maturity, adoption signals, and long-term risk
 - Recommendation, confidence level, and next steps
@@ -142,7 +141,7 @@ Use this structure unless the project needs a better one:
 - `research/02-current-state-baseline.md`
 - `research/03-candidate-tool-profile.md`
 - `research/04-competitive-landscape.md`
-- `research/05-pricing-and-operating-model.md`
+- `research/05-operating-model-and-commercial-fit.md`
 - `research/06-fit-gap-and-tradeoffs.md`
 - `research/07-recommendation.md`
 - `research/tool-profiles/` for one detailed page per tool in scope
@@ -154,7 +153,7 @@ Use this structure unless the project needs a better one:
 - State assumptions explicitly.
 - Cite sources with links when external research is used.
 - Compare the candidate tool both to the current tools in use and to the broader market.
-- Estimate pricing using the user's expected seat count and user roles whenever direct pricing is incomplete or tiered.
+- Discuss pricing or commercial fit only when it materially affects the recommendation or the user has already raised it as a decision factor. Prefer known facts and clearly label commercial unknowns.
 - Capture hosting model, enterprise capabilities, and administrative readiness for each tool profile.
 - Make tradeoffs explicit instead of hiding them in neutral language.
 - End with a recommendation such as `invest`, `pilot`, `defer`, or `reject`, plus the reasoning and confidence level.

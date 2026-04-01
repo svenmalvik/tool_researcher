@@ -26,16 +26,15 @@
 | --- | --- | --- | --- |
 | Problem fit | {summary} | {summary} | {takeaway} |
 | Users | {summary} | {summary} | {takeaway} |
-| Cost | {summary} | {summary} | {takeaway} |
+| Commercial fit | {summary} | {summary} | {takeaway} |
 | Effort | {summary} | {summary} | {takeaway} |
 | Risk | {summary} | {summary} | {takeaway} |
 
-## Pricing Assumptions
+## Commercial Notes
 
-- Expected users: `{count or range}`
-- User roles: `{PMs, developers, designers, etc.}`
-- Pricing model: `{per seat, usage-based, enterprise, mixed}`
-- Estimated cost: `{estimate and time basis}`
+- Pricing or contract model: `{if relevant}`
+- Known commercial constraint: `{if any}`
+- Commercial unknowns: `{if any}`
 
 ## Next Steps
 

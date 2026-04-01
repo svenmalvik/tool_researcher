@@ -20,7 +20,7 @@ This document is the main entry point for the full research package.
 | [02-current-state-baseline.md](./02-current-state-baseline.md) | Current tools in use and the baseline to beat |
 | [03-candidate-tool-profile.md](./03-candidate-tool-profile.md) | The candidate tool's strengths, gaps, and fit |
 | [04-competitive-landscape.md](./04-competitive-landscape.md) | Relevant competitors and market position |
-| [05-pricing-and-operating-model.md](./05-pricing-and-operating-model.md) | Pricing, seat assumptions, user roles, and commercial fit |
+| [05-operating-model-and-commercial-fit.md](./05-operating-model-and-commercial-fit.md) | Operating model, adoption friction, and commercial fit when relevant |
 | [06-fit-gap-and-tradeoffs.md](./06-fit-gap-and-tradeoffs.md) | Side-by-side tradeoffs and decision factors |
 | [07-recommendation.md](./07-recommendation.md) | Final recommendation, confidence, and next steps |
 
@@ -42,7 +42,7 @@ flowchart TD
     A --> D[02-current-state-baseline.md]
     A --> E[03-candidate-tool-profile.md]
     A --> F[04-competitive-landscape.md]
-    A --> G[05-pricing-and-operating-model.md]
+    A --> G[05-operating-model-and-commercial-fit.md]
     A --> H[06-fit-gap-and-tradeoffs.md]
     A --> I[07-recommendation.md]
     A --> J[tool-profiles/*.md]

@@ -10,8 +10,7 @@ Use this framework to create one comparable profile per tool.
 - Hosting model: cloud, local, self-hosted, or hybrid
 - Data and deployment notes when relevant
 - Enterprise readiness: SSO, SCIM, admin controls, auditability, procurement posture
-- Pricing model: free, per seat, usage-based, enterprise, or mixed
-- Estimated cost for the expected user count and roles
+- Commercial model and pricing notes when relevant
 - Strengths
 - Weaknesses
 - Best-fit situations
@@ -26,7 +25,7 @@ Make the profile easy to compare by answering questions like:
 - Where is it limited?
 - How is it hosted and how does that affect adoption?
 - Is it viable for enterprise use?
-- How expensive is it likely to be for the user's expected team shape?
+- Does pricing or contract structure create adoption friction?
 - What kind of organization should choose it, and which should not?
 
 ## Example Comparison Attributes
@@ -37,7 +36,7 @@ Use tables when useful. Typical columns include:
 - Best for
 - Hosting
 - Enterprise features
-- Pricing model
+- Commercial model
 - Strengths
 - Risks
 

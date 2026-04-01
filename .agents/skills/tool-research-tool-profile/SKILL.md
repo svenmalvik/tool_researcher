@@ -1,6 +1,6 @@
 ---
 name: tool-research-tool-profile
-description: Use when a single tool needs a deep profile. Research one tool at a time across features, hosting model, enterprise readiness, pricing, and fit so the results can be compared thoroughly against other tools.
+description: Use when a single tool needs a deep profile. Research one tool at a time across features, hosting model, enterprise readiness, commercial model, and fit so the results can be compared thoroughly against other tools.
 ---
 
 # Tool Research Tool Profile
@@ -28,7 +28,7 @@ Produce one tool profile with these sections:
 - Feature profile
 - Hosting and deployment model
 - Enterprise readiness
-- Pricing and licensing
+- Commercial model and pricing notes when materially relevant
 - Strengths
 - Weaknesses
 - Best-fit scenarios
@@ -40,7 +40,7 @@ Produce one tool profile with these sections:
 - Finish the current tool before starting the next one.
 - Include whether the tool is cloud-only, local-first, self-hosted, or hybrid.
 - Include whether the tool offers enterprise licensing, SSO, SCIM, admin controls, or procurement-friendly plans when relevant.
-- Include pricing facts when available and clearly labeled assumptions when they are not.
+- Include pricing facts when available and materially relevant. Do not invent seat-count scenarios without user input.
 - Write the profile so it can be compared directly to other tool profiles.
 
 ## Handoff
