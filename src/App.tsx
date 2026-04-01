@@ -24,11 +24,34 @@ type MarkdownFetchResult = {
   path: string
 }
 
+type MarkdownFetchFailureCode = 'html-fallback' | 'http-error' | 'sync-error'
+
 const DEFAULT_MARKDOWN_PATH = 'index.md'
 const INITIAL_HTML =
   '<p class="status">Loading the markdown workspace&hellip;</p>'
 const PREFERRED_MARKDOWN_PATHS = ['research/index.md', DEFAULT_MARKDOWN_PATH]
 let mermaidModulePromise: Promise<MermaidModule> | null = null
+
+class MarkdownFetchError extends Error {
+  readonly code: MarkdownFetchFailureCode
+  readonly path: string
+  readonly status: number | null
+
+  constructor(
+    path: string,
+    message: string,
+    options: {
+      code: MarkdownFetchFailureCode
+      status?: number | null
+    },
+  ) {
+    super(message)
+    this.name = 'MarkdownFetchError'
+    this.code = options.code
+    this.path = path
+    this.status = options.status ?? null
+  }
+}
 
 export default function App(): React.JSX.Element {
   const [theme, setTheme] = useState(() => getStoredTheme() ?? getSystemTheme())
@@ -157,6 +180,18 @@ export default function App(): React.JSX.Element {
         return
       }
 
+      if (isMarkdownSyncError(error)) {
+        updateRenderState(requestId, {
+          currentMarkdownPath: DEFAULT_MARKDOWN_PATH,
+          html: renderErrorState(
+            'Could not load the markdown workspace',
+            message,
+          ),
+          title: getDocumentTitle(DEFAULT_MARKDOWN_PATH),
+        })
+        return
+      }
+
       updateRenderState(requestId, {
         currentMarkdownPath: DEFAULT_MARKDOWN_PATH,
         html: renderMarkdownDocument(FALLBACK_MARKDOWN, {
@@ -227,20 +262,23 @@ export default function App(): React.JSX.Element {
 
 async function fetchMarkdown(path: string): Promise<MarkdownFetchResult> {
   const response = await fetch(path, { cache: 'no-store' })
+  const contentType = response.headers.get('content-type') ?? ''
+  const responseBody = await response.text()
 
   if (!response.ok) {
-    throw new Error(`Failed to load ${path} (${response.status})`)
+    throw createMarkdownFetchError(path, response, responseBody)
   }
 
-  const contentType = response.headers.get('content-type') ?? ''
-  const markdown = await response.text()
-
-  if (looksLikeHtmlFallback(markdown, contentType)) {
-    throw new Error(`Received HTML instead of Markdown for ${path}`)
+  if (looksLikeHtmlFallback(responseBody, contentType)) {
+    throw new MarkdownFetchError(
+      path,
+      `Received HTML instead of Markdown for ${path}`,
+      { code: 'html-fallback' },
+    )
   }
 
   return {
-    markdown,
+    markdown: responseBody,
     path,
   }
 }
@@ -249,16 +287,21 @@ async function fetchPreferredMarkdown(
   paths: string[],
 ): Promise<MarkdownFetchResult> {
   let lastError: unknown = null
+  let syncError: MarkdownFetchError | null = null
 
   for (const path of paths) {
     try {
       return await fetchMarkdown(path)
     } catch (error) {
+      if (!syncError && isMarkdownSyncError(error)) {
+        syncError = error
+      }
+
       lastError = error
     }
   }
 
-  throw lastError ?? new Error('Failed to load markdown content')
+  throw syncError ?? lastError ?? new Error('Failed to load markdown content')
 }
 
 function getShellCopy(currentMarkdownPath: string): ShellCopy {
@@ -364,4 +407,33 @@ async function loadMermaidModule(): Promise<MermaidModule> {
   }
 
   return mermaidModulePromise
+}
+
+function createMarkdownFetchError(
+  path: string,
+  response: Response,
+  responseBody: string,
+): MarkdownFetchError {
+  const syncFailed = response.headers.get('x-markdown-sync-status') === 'error'
+  const details = responseBody.trim()
+
+  if (syncFailed && details) {
+    return new MarkdownFetchError(path, details, {
+      code: 'sync-error',
+      status: response.status,
+    })
+  }
+
+  return new MarkdownFetchError(
+    path,
+    `Failed to load ${path} (${response.status})`,
+    {
+      code: syncFailed ? 'sync-error' : 'http-error',
+      status: response.status,
+    },
+  )
+}
+
+function isMarkdownSyncError(error: unknown): error is MarkdownFetchError {
+  return error instanceof MarkdownFetchError && error.code === 'sync-error'
 }

@@ -18,14 +18,45 @@ function markdownContentPlugin(): Plugin {
       await syncMarkdownContent(config.root)
     },
     configureServer(server) {
-      void syncMarkdownContent(config.root)
+      const syncController = createMarkdownSyncController(
+        config.root,
+        (error) => {
+          server.config.logger.error(
+            `[tool-research-markdown-content] ${error.message}`,
+          )
+        },
+      )
+
+      void syncController.sync()
+
+      server.middlewares.use(async (req, res, next) => {
+        if (!isTrackedMarkdownRequest(req.url)) {
+          next()
+          return
+        }
+
+        await syncController.waitForIdle()
+
+        const syncError = syncController.getLastError()
+
+        if (syncError) {
+          res.statusCode = 503
+          res.setHeader('Cache-Control', 'no-store')
+          res.setHeader('Content-Type', 'text/plain; charset=utf-8')
+          res.setHeader('X-Markdown-Sync-Status', 'error')
+          res.end(`Markdown sync failed: ${syncError.message}`)
+          return
+        }
+
+        next()
+      })
 
       const resync = (filePath: string): void => {
         if (!isTrackedMarkdownPath(config.root, filePath)) {
           return
         }
 
-        void syncMarkdownContent(config.root)
+        void syncController.sync()
       }
 
       server.watcher.on('add', resync)
@@ -33,6 +64,71 @@ function markdownContentPlugin(): Plugin {
       server.watcher.on('unlink', resync)
       server.watcher.on('addDir', resync)
       server.watcher.on('unlinkDir', resync)
+    },
+  }
+}
+
+function createMarkdownSyncController(
+  rootDirectory: string,
+  reportError: (error: Error) => void,
+): {
+  getLastError: () => Error | null
+  sync: () => Promise<void>
+  waitForIdle: () => Promise<void>
+} {
+  let activeSync: Promise<void> | null = null
+  let rerunRequested = false
+  let lastError: Error | null = null
+  const idleWaiters = new Set<() => void>()
+
+  const notifyIdleWaiters = (): void => {
+    for (const resolve of idleWaiters) {
+      resolve()
+    }
+
+    idleWaiters.clear()
+  }
+
+  const runSyncLoop = async (): Promise<void> => {
+    try {
+      do {
+        rerunRequested = false
+
+        try {
+          await syncMarkdownContent(rootDirectory)
+          lastError = null
+        } catch (error) {
+          lastError = toError(error)
+          reportError(lastError)
+        }
+      } while (rerunRequested)
+    } finally {
+      activeSync = null
+      notifyIdleWaiters()
+    }
+  }
+
+  return {
+    getLastError() {
+      return lastError
+    },
+    sync() {
+      if (activeSync) {
+        rerunRequested = true
+        return activeSync
+      }
+
+      activeSync = runSyncLoop()
+      return activeSync
+    },
+    waitForIdle() {
+      if (!activeSync) {
+        return Promise.resolve()
+      }
+
+      return new Promise((resolve) => {
+        idleWaiters.add(resolve)
+      })
     },
   }
 }
@@ -63,6 +159,20 @@ function isTrackedMarkdownPath(rootDirectory: string, filePath: string): boolean
     MARKDOWN_ROOT_FILES.includes(relativePath) ||
     relativePath === 'research' ||
     relativePath.startsWith(`research${path.sep}`)
+  )
+}
+
+function isTrackedMarkdownRequest(requestUrl: string | undefined): boolean {
+  if (!requestUrl) {
+    return false
+  }
+
+  const requestPath = requestUrl.split('?')[0].replace(/^\/+/, '')
+
+  return (
+    MARKDOWN_ROOT_FILES.includes(requestPath) ||
+    requestPath === 'research' ||
+    requestPath.startsWith('research/')
   )
 }
 
@@ -125,6 +235,14 @@ function isMissingFileError(error: unknown): boolean {
     'code' in error &&
     error.code === 'ENOENT'
   )
+}
+
+function toError(error: unknown): Error {
+  if (error instanceof Error) {
+    return error
+  }
+
+  return new Error(String(error))
 }
 
 export default defineConfig({
