@@ -46,6 +46,22 @@ The task list must:
 - Be refined when new competitor, baseline, synthesis, or publishing tasks are discovered
 - Stay aligned with the actual workflow so both the user and the AI can see progress clearly
 
+## Local Website Workflow
+
+- If a local preview is needed, use `npm run dev`.
+- The dev server is expected at `http://127.0.0.1:5174`.
+- Reuse the existing server when that URL is already serving this workspace.
+- Do not start parallel Vite servers on alternate ports for the same repo.
+- If port 5174 is occupied by a different process, report the conflict instead of hopping to another port.
+
+## Deployment Workflow
+
+- Only run `vercel deploy --prod --yes` when the user explicitly asks to deploy.
+- If `.vercel/project.json` exists, use it only to confirm the linked project context.
+- If the Vercel CLI fails with sandbox-related DNS or network errors such as `ENOTFOUND api.vercel.com`, retry once with escalated permissions.
+- If deployment still cannot reach Vercel, stop and report that no production URL was created.
+- Do not claim a deploy succeeded unless the Vercel CLI returned the final deployment URL.
+
 ## Required Intake
 
 Use the orientation pass to tailor the intake, then gather at least the following from the user before broader research begins:

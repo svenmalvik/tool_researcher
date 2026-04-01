@@ -5,8 +5,9 @@
   "type": "module",
   "description": "Vite-powered static site for the Tool Researcher template",
   "scripts": {
-    "start": "vite",
-    "dev": "vite",
+    "start": "node scripts/dev-server.mjs",
+    "dev": "node scripts/dev-server.mjs",
+    "dev:vite": "vite --host 127.0.0.1 --port 5174 --strictPort",
     "build": "tsc -b && vite build",
     "preview": "vite preview"
   },

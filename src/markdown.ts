@@ -5,18 +5,23 @@ export type Notice = {
 
 export const FALLBACK_MARKDOWN = `# Tool Researcher
 
-This repository is a starting point for evaluating whether a tool is worth adopting.
+This repository starts as a research workspace, not a finished report.
 
-## What this template is for
+## How the workspace should evolve
 
-- Defining the problem the tool is supposed to solve
-- Establishing a baseline from the tools already in use
-- Comparing the candidate against relevant competitors
-- Producing a clear recommendation with tradeoffs and next steps
+- Keep the root \`README.md\` and \`index.md\` as starter guidance while the evaluation is being scoped.
+- After the short intake, create the live package under \`research/\`, starting with \`research/00-task-list.md\` and \`research/index.md\`.
+- Build the detailed analysis in \`research/\` throughout the run.
+- Overwrite the root \`README.md\` and \`index.md\` only in the final publishing step.
+
+## What the app prefers
+
+When \`research/index.md\` exists, the app should render that package first.
+The root files stay reserved for the finished one-pager and website landing page.
 
 ## What to do next
 
-Replace this file with your own overview, or start a conversation with the AI and let it build the research package under \`research/\`.`
+Start a conversation with the AI, complete the short intake, and let it build the research package under \`research/\`.`
 
 type RenderOptions = {
   basePath: string
