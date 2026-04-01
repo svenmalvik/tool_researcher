@@ -6,13 +6,15 @@ When you create a repository from this template, the repository becomes a worksp
 
 ## Run The Website
 
-This template includes a small Node.js static server so the website can load `index.md` over HTTP instead of relying on `file://`.
+This template uses a Vite app shell so the website can be developed locally and deployed to Vercel without a custom server.
 
 ```bash
-npm start
+npm install
+npm run dev
+npm run build
 ```
 
-Then open `http://127.0.0.1:3000`.
+Then open the local URL printed by Vite, typically `http://127.0.0.1:5173`.
 
 ## What This Template Is For
 
