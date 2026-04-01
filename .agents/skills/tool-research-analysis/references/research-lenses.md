@@ -11,21 +11,20 @@ Use these lenses to evaluate the candidate tool and the relevant competitors.
 - Differentiation: What is materially better or worse than alternatives?
 - Integration fit: How hard is it to connect the tool to the current environment?
 - Implementation effort: What would rollout, migration, and enablement require?
-- Cost and licensing: What is the likely financial profile and total cost of ownership for the expected number and type of users?
+- Commercial model and pricing: What is the pricing or licensing posture, and does it materially change the recommendation?
 - Risk: Security, compliance, vendor maturity, lock-in, support burden, and operational concerns
 - Adoption: Is the tool likely to be adopted successfully by the intended users?
 
-## Pricing Guidance
+## Commercial Guidance
 
-Pricing research should answer these questions:
+Commercial research should answer these questions when they matter:
 
 - What pricing model does the vendor use: per seat, usage-based, tiered, enterprise, or mixed?
-- Which user roles require paid access versus occasional viewer or stakeholder access?
-- What is the likely cost for the user's expected number of people?
 - Are there feature gates, minimum contracts, or enterprise thresholds that change the recommendation?
 - How does the pricing compare to the current tools and the most relevant alternatives?
+- Is commercial fit clearly acceptable, clearly problematic, or still unknown based on the facts available?
 
-If exact pricing is not available, estimate a range using transparent assumptions and label those assumptions clearly.
+If exact pricing is not available, mark commercial fit as uncertain rather than inventing precise seat-based estimates. If the user already gave team-shape or budget context, use it explicitly.
 
 ## Comparison Rules
 

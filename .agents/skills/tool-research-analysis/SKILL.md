@@ -7,7 +7,7 @@ description: Use after intake and baseline work to research the candidate tool, 
 
 ## Overview
 
-Use this skill for the core research and comparison work. The candidate tool must be evaluated against the user's goals, expected users, the current baseline, and the relevant competitive landscape.
+Use this skill for the core research and comparison work. The candidate tool must be evaluated against the user's goals, users, the current baseline, and the relevant competitive landscape.
 
 This skill should synthesize across tool profiles rather than trying to discover every fact from scratch in one pass.
 
@@ -31,7 +31,7 @@ Produce the following:
 - Candidate tool profile
 - Detailed profile pages for each tool in scope
 - Competitive landscape summary
-- Pricing estimate with assumptions about seats and user roles
+- Operating model and commercial fit notes when they materially affect the recommendation
 - Comparison tables against incumbent and market alternatives
 - Fit-gap analysis tied to the user's criteria
 - Major risks, assumptions, and unresolved questions

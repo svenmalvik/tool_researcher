@@ -1,4 +1,4 @@
 interface:
   display_name: "Tool Research Tool Profile"
   short_description: "Profile one tool in depth"
-  default_prompt: "Use $tool-research-tool-profile to research one tool in depth across features, hosting, enterprise readiness, pricing, and fit."
+  default_prompt: "Use $tool-research-tool-profile to research one tool in depth across features, hosting, enterprise readiness, commercial model, and fit."
