@@ -11,7 +11,7 @@ The work should not stop at feature discovery. The goal is to produce a defensib
 - Start with clarifying questions before doing broad research.
 - Before the main intake, do a lightweight orientation pass on the candidate tool to identify its category, likely use case, deployment model, and obvious evaluation-specific questions.
 - Keep that orientation pass narrow. It is only for tailoring intake questions, not for reaching conclusions or skipping user context.
-- Ask no more than five intake prompts at a time and prefer grouped prompts over long flat questionnaires.
+- Ask intake questions one at a time. Organize them into short rounds of related questions, and after each round provide a concise summary before starting the next round.
 - Create a task list at the start of the run and keep it updated as work is completed.
 - Always ask what similar or adjacent tools are already in use today.
 - Research the current tools first so the evaluation has a real baseline.

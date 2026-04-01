@@ -13,8 +13,8 @@ Use this skill to scope the research before the project moves into market analys
 
 1. Confirm the candidate tool and the decision the user is trying to make.
 2. Do a lightweight orientation pass on the candidate tool and category before asking the main intake questions.
-3. Use that orientation pass to select the grouped intake prompts from `references/question-bank.md` and add only the most relevant category-specific follow-ups.
-4. Ask no more than 5 prompts in a single turn and prefer 3 to 4 grouped prompts when possible.
+3. Use that orientation pass to select the next intake questions from `references/question-bank.md` and add only the most relevant category-specific follow-ups.
+4. Ask one question per turn. Organize intake into short rounds of 3 to 5 related questions, then give a concise summary before starting the next round.
 5. Explicitly ask what similar tools are already in use today.
 6. Capture what is working well and poorly with the current tools.
 7. Ask how many people may use the tool, what kinds of users they are, and what success looks like.
@@ -25,10 +25,11 @@ Use this skill to scope the research before the project moves into market analys
 ## Intake Style
 
 - Start with a narrow orientation pass: enough to classify the tool and tailor the intake, not enough to become full research.
-- Prefer grouped prompts over a long numbered questionnaire.
+- Prefer one question per turn over grouped prompts or long numbered questionnaires.
 - Cover the essentials first: scope, decision, users, baseline, constraints, and existing material.
 - Keep the first turn short enough that the user can answer without scrolling fatigue.
 - Use follow-up questions only to close important gaps such as budget, approval owner, success criteria, migration barriers, or category-specific risks.
+- After each intake round, summarize what you learned, note any assumptions, and explain what the next round will cover.
 
 ## Required Output
 
