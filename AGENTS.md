@@ -49,10 +49,11 @@ The task list must:
 ## Local Website Workflow
 
 - If a local preview is needed, use `npm run dev`.
-- The dev server is expected at `http://127.0.0.1:5174`.
+- The dev server prefers `http://127.0.0.1:5174`.
+- The most recently started workspace dev server URL is recorded here by `npm run dev`: `not started yet`.
 - Reuse the existing server when that URL is already serving this workspace.
 - Do not start parallel Vite servers on alternate ports for the same repo.
-- If port 5174 is occupied by a different process, report the conflict instead of hopping to another port.
+- If port 5174 is occupied by a different process, allow the dev server to use the next available local port and use the URL it reports.
 
 ## Deployment Workflow
 

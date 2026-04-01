@@ -32,7 +32,7 @@ npm run dev
 npm run build
 ```
 
-The local workspace should run at `http://127.0.0.1:5174`.
+The local workspace prefers `http://127.0.0.1:5174` and falls back to the next available local port when `5174` is already in use.
 If the server is already running for this repo, `npm run dev` should reuse it instead of starting another copy on a different port.
 
 ## What The Workspace Is For
