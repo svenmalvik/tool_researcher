@@ -13,11 +13,12 @@ Use this skill to produce a deep profile for one tool only. This is the unit of 
 
 1. Confirm which single tool is in scope and why it matters to the evaluation.
 2. Research the tool using the framework in `references/tool-profile-framework.md`.
-3. Capture facts first, then clearly labeled inference where facts are incomplete.
-4. Summarize where the tool fits well, where it does not, and what would matter in a side-by-side comparison.
-5. Produce one profile page that can be linked from the final report.
-6. Mark the tool-profile task as complete in the task list.
-7. Hand off to the next tool profile or to synthesis only after this profile is complete.
+3. If community evidence matters to the evaluation, run or read `tool-research-community-signals` for the current tool before finalizing the profile.
+4. Capture facts first, then clearly labeled inference where facts are incomplete.
+5. Summarize where the tool fits well, where it does not, and what would matter in a side-by-side comparison.
+6. Produce one profile page that can be linked from the final report.
+7. Mark the tool-profile task as complete in the task list.
+8. Hand off to the next tool profile or to synthesis only after this profile is complete.
 
 ## Required Output
 
@@ -29,6 +30,7 @@ Produce one tool profile with these sections:
 - Hosting and deployment model
 - Enterprise readiness
 - Commercial model and pricing notes when materially relevant
+- Community signals and practitioner feedback when relevant
 - Strengths
 - Weaknesses
 - Best-fit scenarios
@@ -41,6 +43,7 @@ Produce one tool profile with these sections:
 - Include whether the tool is cloud-only, local-first, self-hosted, or hybrid.
 - Include whether the tool offers enterprise licensing, SSO, SCIM, admin controls, or procurement-friendly plans when relevant.
 - Include pricing facts when available and materially relevant. Do not invent seat-count scenarios without user input.
+- Label community-reported experience separately from verified facts.
 - Write the profile so it can be compared directly to other tool profiles.
 
 ## Handoff
@@ -50,3 +53,4 @@ Pass completed tool profiles to `tool-research-analysis` for synthesis across to
 ## Resources
 
 - Read `references/tool-profile-framework.md` before profiling a tool.
+- Use `tool-research-community-signals` when public practitioner evidence is important to the decision.

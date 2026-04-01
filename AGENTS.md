@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This repository is a template for researching a tool, its capabilities, and the competitive landscape around it to decide whether it is worth investing in.
+This repository is a template for researching a tool, its capabilities, the competitive landscape around it, and what the community is saying about the options to decide whether it is worth investing in.
 
 The work should not stop at feature discovery. The goal is to produce a defensible recommendation based on the user's goals, the tools already in use, the broader market, and the practical cost of adoption.
 
@@ -16,9 +16,11 @@ The work should not stop at feature discovery. The goal is to produce a defensib
 - Always ask what similar or adjacent tools are already in use today.
 - Research the current tools first so the evaluation has a real baseline.
 - Research the candidate tool and relevant competitors after the baseline is clear.
+- Research what practitioners, users, and customers are saying about the candidate tool and the relevant alternatives, using public community sources in addition to vendor material.
 - Build one deep profile per relevant tool in scope: current tools, candidate tool, and the most relevant competitors.
 - Run the workflow in sequence from intake to baseline to tool profiles to synthesis to publishing, even when the work takes time.
 - Complete each tool profile one at a time before moving to final synthesis.
+- Treat community feedback as evidence, not proof: separate recurring anecdotal themes from verified facts.
 - Publish the results as a linked Markdown package that reads like a book or website, not a loose collection of notes.
 
 ## Required Sequence
@@ -31,8 +33,9 @@ Follow this order unless the user explicitly asks for a different flow:
 4. Baseline research on current tools already in use
 5. Deep profile of the candidate tool
 6. Deep profile of each relevant competitor or incumbent tool
-7. Cross-tool comparison and synthesis
-8. Final publishing into the linked Markdown package
+7. Community signal review across the candidate tool, incumbent tools, and relevant competitors
+8. Cross-tool comparison and synthesis
+9. Final publishing into the linked Markdown package
 
 ## Task Tracking
 
@@ -43,7 +46,7 @@ The task list must:
 - Use Markdown checkboxes
 - Show what is completed and what is still remaining
 - Be updated whenever a major task is finished
-- Be refined when new competitor, baseline, synthesis, or publishing tasks are discovered
+- Be refined when new competitor, community-signal, baseline, synthesis, or publishing tasks are discovered
 - Stay aligned with the actual workflow so both the user and the AI can see progress clearly
 
 ## Local Website Workflow
@@ -81,6 +84,7 @@ Use the orientation pass to tailor the intake, then gather at least the followin
 - Must-have capabilities and non-negotiable constraints
 - Contract, migration, or switching-cost barriers tied to the current tools
 - Decision criteria or major tradeoffs that matter most
+- Any known community concerns, praise, or claims that should be verified during research
 - Any additional information, documents, notes, links, or prior analysis the user already has
 
 If the user does not know which similar tools are already in use, ask for the closest known substitutes or the current workflow that the candidate tool would replace.
@@ -113,11 +117,22 @@ Every serious evaluation should cover the lenses below. Skip a lens only when it
 - Hosting and deployment model, such as cloud, local, self-hosted, or hybrid
 - Enterprise readiness, such as SSO, SCIM, admin controls, and enterprise licensing
 - Competitive landscape and differentiation
+- Community sentiment and practitioner feedback across the candidate tool and relevant alternatives
 - Implementation and integration effort
 - Commercial model, pricing, and total cost of ownership when they materially affect the decision
 - Security, compliance, and operational concerns when relevant
 - Vendor maturity, adoption signals, and long-term risk
 - Recommendation, confidence level, and next steps
+
+## Community Evidence
+
+Treat community evidence as a required input for the candidate tool and the most relevant alternatives unless the category clearly lacks meaningful public discussion.
+
+- Use multiple public sources where relevant, such as GitHub issues and discussions, Reddit, Hacker News, Stack Overflow, review sites, independent blogs, and practitioner social posts.
+- Capture recurring positives, recurring complaints, implementation friction, support quality, performance and reliability concerns, and signs of churn or lock-in where those patterns appear.
+- Separate verified product facts from anecdotal user reports.
+- Prefer recurring patterns across multiple independent sources over isolated hot takes.
+- Note when sentiment is sparse, skewed, vendor-amplified, or materially outdated.
 
 ## Output Contract
 
@@ -131,6 +146,7 @@ The package must include:
 - `research/index.md`: the canonical entry point and reading guide
 - Numbered section files for the detailed analysis
 - Tool profile pages for the candidate tool, incumbent tools, and key competitors
+- Clear treatment of community sentiment, either in a dedicated numbered section or clearly labeled subsections in the tool profiles and competitive analysis
 
 The output rules are strict:
 
@@ -143,6 +159,7 @@ The output rules are strict:
 - The main file must explain the reading order so the result feels like a book or website.
 - The task list must show checked and unchecked items so progress is visible.
 - Every tool profile page must be linked from both `research/index.md` and the competitive-landscape section.
+- Community findings must be labeled clearly as verified fact, user report, or inference when they materially affect the recommendation.
 - Use Markdown tables and Mermaid diagrams where they improve navigation or understanding.
 - Avoid orphan files, dead-end pages, and duplicated conclusions across files.
 
@@ -158,9 +175,10 @@ Use this structure unless the project needs a better one:
 - `research/02-current-state-baseline.md`
 - `research/03-candidate-tool-profile.md`
 - `research/04-competitive-landscape.md`
-- `research/05-operating-model-and-commercial-fit.md`
-- `research/06-fit-gap-and-tradeoffs.md`
-- `research/07-recommendation.md`
+- `research/05-community-sentiment.md`
+- `research/06-operating-model-and-commercial-fit.md`
+- `research/07-fit-gap-and-tradeoffs.md`
+- `research/08-recommendation.md`
 - `research/tool-profiles/` for one detailed page per tool in scope
 - `research/appendices/` for large comparison matrices, source notes, or supporting detail
 
@@ -169,6 +187,7 @@ Use this structure unless the project needs a better one:
 - Separate verified facts from inference.
 - State assumptions explicitly.
 - Cite sources with links when external research is used.
+- Separate vendor claims, verified facts, and community-reported experience.
 - Never mention files in AI responses. Do not include file links, file paths, or references to specific files, because these are not useful in the user's editor.
 - Compare the candidate tool both to the current tools in use and to the broader market.
 - Discuss pricing or commercial fit only when it materially affects the recommendation or the user has already raised it as a decision factor. Prefer known facts and clearly label commercial unknowns.

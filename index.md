@@ -16,6 +16,6 @@ The root docs remain reserved for the finished one-pager and website landing pag
 
 ## What to do next
 
-Start a conversation with the AI and let it build the research package under `research/`.
+Start a conversation with the AI and let it build the research package under `research/`, including the baseline, alternatives, and public community feedback.
 
 When the research is complete, this file should be overwritten last with the final website landing page that links to `README.md` and `research/index.md`.

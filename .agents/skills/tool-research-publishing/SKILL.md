@@ -16,7 +16,7 @@ This skill runs after the sequential research workflow is complete.
 1. Overwrite `README.md` with the final one-pager so the repository landing page reflects the finished research.
 2. Create `research/index.md` as the canonical entry point for the full package.
 3. Create or finalize `research/00-task-list.md` so it reflects what was completed.
-4. Create numbered section files for the full analysis, including operating model and commercial fit when it matters.
+4. Create numbered section files for the full analysis, including community sentiment and operating model or commercial fit when they matter.
 5. Create `research/tool-profiles/` pages for the candidate tool, current tools, and key competitors when deep profiling was done.
 6. Link the full package from `README.md`.
 7. Link every secondary file from `research/index.md`.
@@ -36,6 +36,7 @@ The final package must include:
 - Detailed numbered Markdown files
 - Tool profile pages when multiple tools were researched
 - Cross-links that make the reading order obvious
+- Community-signal findings when they materially affected the evaluation
 
 ## Publishing Rules
 
@@ -44,6 +45,7 @@ The final package must include:
 - The main index must describe each linked file in one or two lines.
 - The task list must be linked prominently and use checked and unchecked boxes.
 - `README.md` must act as the one-pager and summarize the recommendation, rationale, risks, and next steps.
+- `README.md` should mention community-signal findings when they materially affect confidence or risk.
 - `README.md` should link clearly to `research/index.md` for the full package.
 - Numbered files should read in sequence.
 - Tool profile pages should be grouped and linked consistently so the reader can jump between them easily.
