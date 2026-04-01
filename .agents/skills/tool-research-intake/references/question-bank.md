@@ -6,8 +6,9 @@ Use these questions to create a usable research brief before broader analysis st
 
 - Start with a lightweight orientation pass on the candidate tool and category.
 - Use the orientation pass only to tailor the intake prompts. Do not let it become full research.
-- Ask no more than 5 prompts in a single turn.
-- Prefer grouped prompts over a long flat questionnaire. Each prompt can collect 2 to 4 closely related inputs.
+- Ask one question per turn.
+- Organize intake into short rounds of 3 to 5 related questions, then provide a concise summary before starting the next round.
+- Do not send a grouped questionnaire in a single message.
 - Start with the core intake round below and only ask follow-ups for material gaps.
 - If the user already answered a question indirectly, do not ask it again.
 - If the user does not know exact numbers, capture a range and mark it as an assumption.
@@ -26,7 +27,7 @@ Use fast, high-signal sources such as the vendor homepage, product docs overview
 
 ## Core Intake Round
 
-Ask 3 to 5 grouped prompts that cover the full intake surface:
+Ask these questions one at a time. After this round, summarize the answers before moving to follow-ups.
 
 - Scope and trigger:
   What tool are we evaluating, what problem or job should it solve, and why is this evaluation happening now?
@@ -41,7 +42,7 @@ Ask 3 to 5 grouped prompts that cover the full intake surface:
 
 ## Baseline Follow-Up Questions
 
-Ask these only when current tools already exist and the first round did not answer them well enough:
+Ask these only when current tools already exist and the first round did not answer them well enough. Ask them one at a time, then summarize the baseline before moving on.
 
 - Are the current tools official standards or ad hoc choices?
 - Are there contracts, sunk costs, migration barriers, or procurement constraints tied to them?
@@ -53,7 +54,7 @@ Ask these only when current tools already exist and the first round did not answ
 
 ## Optional Depth Follow-Up Questions
 
-Use these when the evaluation needs more precision:
+Use these when the evaluation needs more precision. Ask them one at a time and end the round with a concise summary of what changed.
 
 - Which integrations or data flows are non-negotiable?
 - Which metrics define success after adoption?
@@ -65,7 +66,7 @@ Use these when the evaluation needs more precision:
 
 ## Category-Specific Follow-Up Examples
 
-Use at most 1 to 2 of these when the orientation pass shows they matter:
+Use at most 1 to 2 of these when the orientation pass shows they matter. Ask them one at a time and fold the answers into the next round summary.
 
 - AI tools:
   Which models, data-handling rules, guardrails, or human-review requirements are non-negotiable?
