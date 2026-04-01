@@ -1,13 +1,18 @@
 # Tool Researcher
 
-This repository is a starting point for evaluating whether a tool is worth adopting.
+This repository starts as a research workspace, not a finished report.
 
-## What this template is for
+## How the workflow should progress
 
-- Defining the problem the tool is supposed to solve
-- Establishing a baseline from the tools already in use
-- Comparing the candidate against relevant competitors
-- Producing a clear recommendation with tradeoffs and next steps
+- Keep the root `README.md` and `index.md` as starter guidance while the evaluation is being scoped.
+- After the short intake, create the live package under `research/`.
+- Build the full analysis there throughout the run.
+- Replace the root docs only when the final recommendation is ready to publish.
+
+## What the app should render
+
+When `research/index.md` exists, the app should prefer that package.
+The root docs remain reserved for the finished one-pager and website landing page.
 
 ## What to do next
 

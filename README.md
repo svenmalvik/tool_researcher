@@ -1,12 +1,30 @@
 # Tool Researcher
 
-Tool Researcher is a GitHub template for evaluating whether a tool is worth investing in. It is designed for situations where you want more than a quick feature check and need a structured view of the tool, the alternatives, the current state, and the tradeoffs.
+Tool Researcher is a starter workspace for evaluating whether a tool is worth investing in. It is designed for situations where you want more than a quick feature check and need a structured view of the tool, the alternatives, the current state, and the tradeoffs.
 
-When you create a repository from this template, the repository becomes a workspace for researching one tool in depth. The AI guides the user through clarifying questions, gathers the right context, researches the tool and its competitors, and produces a final recommendation in a format that is easy to review and share.
+When you create a repository from this template, the repository becomes a working area for one evaluation. The AI guides the user through clarifying questions, gathers the right context, researches the tool and its competitors, and produces a final recommendation in a format that is easy to review and share.
+
+## Lifecycle
+
+This repository has two phases:
+
+1. Starter phase: the root `README.md` and `index.md` explain how the workspace should be used.
+2. Publishing phase: once the research package is complete, those same root files are overwritten with the final one-pager and website landing page.
+
+During the active research run, the real output should live under `research/`.
+Start there as soon as the short intake is complete.
+
+The intended sequence is:
+
+1. Do the orientation pass and intake.
+2. Create `research/00-task-list.md` and `research/index.md`.
+3. Build the rest of the research package under `research/`.
+4. Replace the root `README.md` and `index.md` only at the very end.
 
 ## Run The Website
 
 This template uses a Vite app shell so the website can be developed locally and deployed to Vercel without a custom server.
+The app prefers `research/index.md` when it exists, and otherwise falls back to the starter root docs.
 
 ```bash
 npm install
@@ -14,9 +32,10 @@ npm run dev
 npm run build
 ```
 
-Then open the local URL printed by Vite, typically `http://127.0.0.1:5173`.
+The local workspace should run at `http://127.0.0.1:5174`.
+If the server is already running for this repo, `npm run dev` should reuse it instead of starting another copy on a different port.
 
-## What This Template Is For
+## What The Workspace Is For
 
 - Understanding what a tool does and who it is best suited for
 - Comparing a tool against the tools already in use
@@ -73,7 +92,7 @@ The resulting analysis is expected to cover:
 
 The final result is meant to read like a small website or book rather than a loose set of notes. The output can include multiple Markdown files, Mermaid diagrams, and tables, with a main entry page that links to the rest of the research.
 
-When the research is finished, this template `README.md` should be replaced with the final one-pager so the repository landing page reflects the actual recommendation instead of the starter template.
+When the research is finished, this starter `README.md` should be replaced with the final one-pager so the repository landing page reflects the actual recommendation instead of the onboarding guidance.
 
 A typical output package includes:
 

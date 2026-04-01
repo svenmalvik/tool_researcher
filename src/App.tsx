@@ -14,6 +14,11 @@ type RenderState = {
   title: string
 }
 
+type ShellCopy = {
+  eyebrow: string
+  lede: React.JSX.Element
+}
+
 type MarkdownFetchResult = {
   markdown: string
   path: string
@@ -21,7 +26,7 @@ type MarkdownFetchResult = {
 
 const DEFAULT_MARKDOWN_PATH = 'index.md'
 const INITIAL_HTML =
-  '<p class="status">Loading <code>index.md</code>&hellip;</p>'
+  '<p class="status">Loading the markdown workspace&hellip;</p>'
 const PREFERRED_MARKDOWN_PATHS = ['research/index.md', DEFAULT_MARKDOWN_PATH]
 let mermaidModulePromise: Promise<MermaidModule> | null = null
 
@@ -158,7 +163,7 @@ export default function App(): React.JSX.Element {
           basePath: DEFAULT_MARKDOWN_PATH,
           notice: {
             kind: 'warning',
-            message: `Could not load index.md directly. Showing the built-in starter content instead. (${message})`,
+            message: `Could not load the markdown workspace directly. Showing the built-in starter content instead. (${message})`,
           },
         }),
         title: getDocumentTitle(DEFAULT_MARKDOWN_PATH),
@@ -185,12 +190,13 @@ export default function App(): React.JSX.Element {
   }
 
   const nextThemeLabel = theme === 'dark' ? 'Light mode' : 'Dark mode'
+  const shellCopy = getShellCopy(renderState.currentMarkdownPath)
 
   return (
     <div className="page-shell">
       <header className="hero">
         <div className="hero-top">
-          <p className="eyebrow">Template</p>
+          <p className="eyebrow">{shellCopy.eyebrow}</p>
           <button
             aria-label={`Switch to ${nextThemeLabel.toLowerCase()}`}
             aria-pressed={theme === 'dark'}
@@ -203,10 +209,7 @@ export default function App(): React.JSX.Element {
           </button>
         </div>
         <h1>Tool Researcher</h1>
-        <p className="lede">
-          A Vite-powered starting page that renders the repository&apos;s{' '}
-          <code>index.md</code>.
-        </p>
+        <p className="lede">{shellCopy.lede}</p>
       </header>
 
       <main>
@@ -256,6 +259,58 @@ async function fetchPreferredMarkdown(
   }
 
   throw lastError ?? new Error('Failed to load markdown content')
+}
+
+function getShellCopy(currentMarkdownPath: string): ShellCopy {
+  if (currentMarkdownPath.startsWith('research/')) {
+    return {
+      eyebrow: 'Research Package',
+      lede: (
+        <>
+          The workspace is rendering the live package from <code>research/</code>.
+          Keep building the evaluation there, then overwrite the root{' '}
+          <code>README.md</code> and <code>index.md</code> only in the final
+          publishing step.
+        </>
+      ),
+    }
+  }
+
+  if (currentMarkdownPath === 'README.md') {
+    return {
+      eyebrow: 'One-Pager',
+      lede: (
+        <>
+          The root <code>README.md</code> is reserved for the finished summary.
+          During the run, keep the detailed research package under{' '}
+          <code>research/</code> and regenerate this page at the end.
+        </>
+      ),
+    }
+  }
+
+  if (currentMarkdownPath === 'index.md') {
+    return {
+      eyebrow: 'Starter Workspace',
+      lede: (
+        <>
+          This repo starts with onboarding docs at the root. After intake,
+          create the live package under <code>research/</code>, and replace the
+          root docs only when the recommendation is ready to publish.
+        </>
+      ),
+    }
+  }
+
+  return {
+    eyebrow: 'Markdown Workspace',
+    lede: (
+      <>
+        This shell renders the repository&apos;s markdown package and prefers{' '}
+        <code>research/index.md</code> when it exists.
+      </>
+    ),
+  }
 }
 
 function applyTheme(theme: string): void {
