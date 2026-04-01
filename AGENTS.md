@@ -152,6 +152,7 @@ Use this structure unless the project needs a better one:
 - Separate verified facts from inference.
 - State assumptions explicitly.
 - Cite sources with links when external research is used.
+- Never mention files in AI responses. Do not include file links, file paths, or references to specific files, because these are not useful in the user's editor.
 - Compare the candidate tool both to the current tools in use and to the broader market.
 - Discuss pricing or commercial fit only when it materially affects the recommendation or the user has already raised it as a decision factor. Prefer known facts and clearly label commercial unknowns.
 - Capture hosting model, enterprise capabilities, and administrative readiness for each tool profile.
