@@ -11,6 +11,7 @@ Use this framework to create one comparable profile per tool.
 - Data and deployment notes when relevant
 - Enterprise readiness: SSO, SCIM, admin controls, auditability, procurement posture
 - Commercial model and pricing notes when relevant
+- Community signals and practitioner feedback when relevant
 - Strengths
 - Weaknesses
 - Best-fit situations
@@ -26,6 +27,7 @@ Make the profile easy to compare by answering questions like:
 - How is it hosted and how does that affect adoption?
 - Is it viable for enterprise use?
 - Does pricing or contract structure create adoption friction?
+- What are users consistently praising or criticizing in public discussion?
 - What kind of organization should choose it, and which should not?
 
 ## Example Comparison Attributes
@@ -37,6 +39,7 @@ Use tables when useful. Typical columns include:
 - Hosting
 - Enterprise features
 - Commercial model
+- Community signals
 - Strengths
 - Risks
 

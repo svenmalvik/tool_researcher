@@ -26,6 +26,7 @@
 | --- | --- | --- | --- |
 | Problem fit | {summary} | {summary} | {takeaway} |
 | Users | {summary} | {summary} | {takeaway} |
+| Community signals | {summary} | {summary} | {takeaway} |
 | Commercial fit | {summary} | {summary} | {takeaway} |
 | Effort | {summary} | {summary} | {takeaway} |
 | Risk | {summary} | {summary} | {takeaway} |

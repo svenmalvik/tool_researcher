@@ -20,9 +20,10 @@ The workflow is sequential. Do not skip ahead to synthesis until the relevant to
 3. Run `tool-research-tool-profile` for the candidate tool first.
 4. Run `tool-research-tool-profile` for each important incumbent or competitor one at a time.
 5. Update the task list as each tool profile is completed or as new profile tasks are discovered.
-6. Synthesize the resulting profiles using the lenses in `references/research-lenses.md`.
-7. Compare the candidate tool against both the incumbent tools and the broader market.
-8. Produce a fit-gap analysis, explicit tradeoffs, and a recommendation input for publishing.
+6. Run `tool-research-community-signals` for the candidate tool and the most relevant incumbents or competitors after the factual profiles are in place.
+7. Synthesize the resulting profiles using the lenses in `references/research-lenses.md`.
+8. Compare the candidate tool against both the incumbent tools and the broader market.
+9. Produce a fit-gap analysis, explicit tradeoffs, and a recommendation input for publishing.
 
 ## Required Output
 
@@ -31,6 +32,7 @@ Produce the following:
 - Candidate tool profile
 - Detailed profile pages for each tool in scope
 - Competitive landscape summary
+- Community sentiment summary with recurring themes and evidence caveats
 - Operating model and commercial fit notes when they materially affect the recommendation
 - Comparison tables against incumbent and market alternatives
 - Fit-gap analysis tied to the user's criteria
@@ -45,6 +47,7 @@ Produce the following:
 - Prefer a small number of relevant competitors over a long generic list.
 - Prefer one deep profile per important tool over shallow coverage of many tools.
 - Keep the research ordered and sequential, even when the process takes longer.
+- Do not treat sparse community chatter as consensus.
 - Keep `research/00-task-list.md` current so completed work and remaining work are visible.
 
 ## Handoff
@@ -54,4 +57,5 @@ Pass the research package to `tool-research-publishing`.
 ## Resources
 
 - Read `references/research-lenses.md` before starting detailed analysis.
+- Use `tool-research-community-signals` to capture practitioner evidence and recurring public themes.
 - Use `tool-research-tool-profile` to research individual tools in depth.

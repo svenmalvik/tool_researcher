@@ -1,6 +1,6 @@
 # Tool Researcher
 
-Tool Researcher is a starter workspace for evaluating whether a tool is worth investing in. It is designed for situations where you want more than a quick feature check and need a structured view of the tool, the alternatives, the current state, and the tradeoffs.
+Tool Researcher is a starter workspace for evaluating whether a tool is worth investing in. It is designed for situations where you want more than a quick feature check and need a structured view of the tool, the alternatives, the current state, what the community is saying, and the tradeoffs.
 
 When you create a repository from this template, the repository becomes a working area for one evaluation. The AI guides the user through clarifying questions, gathers the right context, researches the tool and its competitors, and produces a final recommendation in a format that is easy to review and share.
 
@@ -54,6 +54,7 @@ The template uses an AI-guided workflow to:
 - Ask what similar tools are already in use
 - Research the current tools first to establish a baseline
 - Research the candidate tool and the most relevant competitors
+- Research what practitioners and customers are saying about the candidate tool and the alternatives
 - Compare the tools across the criteria that matter for the decision
 - Track progress with a task list so the user can see what is complete and what remains
 - Present the findings as a linked research package
@@ -74,6 +75,7 @@ To make the research useful, the AI will typically ask for:
 - Pain points with the current workflow
 - Must-have requirements and constraints
 - Migration, procurement, or switching-cost constraints
+- Any known community concerns, praise, or claims that should be checked
 - Any extra notes, links, documents, or prior analysis the user already has
 
 ## What The AI Researches
@@ -86,6 +88,7 @@ The resulting analysis is expected to cover:
 - Commercial model or pricing where it materially affects the decision
 - Current-state fit versus replacement effort
 - Competitive landscape and market position
+- Community sentiment and practitioner feedback across the tool and alternatives
 - Risks, unknowns, and tradeoffs
 
 ## What The Output Looks Like
@@ -104,9 +107,10 @@ A typical output package includes:
 - `research/02-current-state-baseline.md`
 - `research/03-candidate-tool-profile.md`
 - `research/04-competitive-landscape.md`
-- `research/05-operating-model-and-commercial-fit.md`
-- `research/06-fit-gap-and-tradeoffs.md`
-- `research/07-recommendation.md`
+- `research/05-community-sentiment.md`
+- `research/06-operating-model-and-commercial-fit.md`
+- `research/07-fit-gap-and-tradeoffs.md`
+- `research/08-recommendation.md`
 - `research/tool-profiles/` for one deep page per tool in scope
 
 The main `research/index.md` file should guide the reader through the rest of the package in order.
@@ -119,6 +123,7 @@ If you wanted to evaluate a tool such as Lovable, this template would help the A
 - Ask what similar tools are already in use
 - Research those tools first
 - Research Lovable and the most relevant alternatives
+- Look at what builders are saying publicly about Lovable and its alternatives, not just the vendor pages
 - Compare them on features, hosting model, enterprise features, and commercial fit when relevant
 - Produce a recommendation based on the user's actual context
 

@@ -9,6 +9,7 @@ Use these lenses to evaluate the candidate tool and the relevant competitors.
 - Hosting model: Is the tool cloud-only, local-first, self-hosted, or hybrid?
 - Enterprise readiness: Does the tool support SSO, SCIM, admin controls, enterprise licensing, and larger-team governance?
 - Differentiation: What is materially better or worse than alternatives?
+- Community signals: What are practitioners actually reporting, and how strong, recent, and diverse are those signals?
 - Integration fit: How hard is it to connect the tool to the current environment?
 - Implementation effort: What would rollout, migration, and enablement require?
 - Commercial model and pricing: What is the pricing or licensing posture, and does it materially change the recommendation?

@@ -11,7 +11,7 @@ This is the website entry page for the finished research package.
 ## What This Package Contains
 
 - A one-pager with the recommendation, rationale, risks, and next steps
-- A full linked research package with baseline analysis, tool profiles, operating-model or commercial-fit notes, fit-gap analysis, and recommendation detail
+- A full linked research package with baseline analysis, tool profiles, community evidence, operating-model or commercial-fit notes, fit-gap analysis, and recommendation detail
 - Supporting comparison structure so the research can be reviewed quickly or read end to end
 
 ## Reading Paths

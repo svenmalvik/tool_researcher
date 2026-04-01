@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tool Research Community Signals"
+  short_description: "Research public practitioner sentiment"
+  default_prompt: "Use $tool-research-community-signals to capture what practitioners are saying publicly about the candidate tool and alternatives, separate anecdotes from facts, and summarize recurring themes."

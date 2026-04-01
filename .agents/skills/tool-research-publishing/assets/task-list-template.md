@@ -8,6 +8,7 @@
 - [ ] Baseline research on current tools completed
 - [ ] Candidate tool profile completed
 - [ ] Competitor and incumbent tool profiles completed
+- [ ] Community signal review completed
 - [ ] Cross-tool comparison and synthesis completed
 - [ ] Pricing and operating model analysis completed
 - [ ] Final recommendation completed
